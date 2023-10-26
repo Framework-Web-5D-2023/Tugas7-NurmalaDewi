@@ -10,7 +10,7 @@
         <a class="navbar-brand" href="<-?= base_url('/'); ?>">Home</a>
         <a class="navbar-brand" href="<-?= base_url('about'); ?>">About Us</a>
     </nav> -->
-    <nav class="navbar navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Nurmala</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
