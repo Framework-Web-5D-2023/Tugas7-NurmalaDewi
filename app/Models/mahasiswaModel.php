@@ -5,12 +5,12 @@ namespace App\Models;
 use CodeIgniter\Model;
 
 class mahasiswaModel extends Model{
-    protected $table = 'mhs';
+    protected $table = 'mahasiswa';
     protected $primaryKey ='id';
 
     protected $useTimestamps = true;
 
-    public function getAllMhs(){
+    public function getAllMahasiswa(){
         return $this->findAll();
     }
 }
