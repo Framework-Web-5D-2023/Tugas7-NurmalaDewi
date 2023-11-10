@@ -8,9 +8,15 @@ class mahasiswaModel extends Model{
     protected $table = 'mahasiswa';
     protected $primaryKey ='id';
 
-    protected $useTimestamps = true;
+    protected $protectFields = false;
+    
+    protected $useTimestamps = false;
 
-    public function getAllMahasiswa(){
-        return $this->findAll();
+    public function create($data){
+        return $this->insert($data);
     }
+
+     public function getAllMahasiswa(){
+         return $this->findAll();
+     }
 }
