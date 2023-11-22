@@ -27,4 +27,4 @@
     </div>
   </div>
 </nav>
-    <div class="container">
+<?php $this->renderSection("content") ?>

@@ -12,11 +12,23 @@ class mahasiswaModel extends Model{
     
     protected $useTimestamps = false;
 
-    public function create($data){
+    public function createMahasiswa($data){
         return $this->insert($data);
     }
 
-     public function getAllMahasiswa(){
+    // public function create($data){
+    // return $this->insert($data);
+    // }
+
+    public function getDetailMahasiswa($id){
+    return $this->find($id);
+    }
+
+    public function updateMahasiswa($id, $data){
+    return $this->update($id, $data);
+    }
+
+    public function getAllMahasiswa(){
          return $this->findAll();
      }
 }

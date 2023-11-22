@@ -19,10 +19,21 @@ class Home extends BaseController {
             "prodi" => $prodi,
         ];
 
-        $this -> mahasiswaModel -> create($data);
-        $this -> session->setFlashData("success", "mahasiswa has been added");
-        //$this->session = \Config\Services::session();
-        return redirect ()-> to (base_url("/"));
+        $this->mahasiswaModel->createMahasiswa($data);
+        $this->session->setFlashData("success", "mahasiswa has been added");
+        $this->session=\Config\Services::session();
+        return redirect()->to(base_url("/"));
+    }
+
+    public function detailMahasiswa($id){
+    $mahasiswa = $this->mahasiswaModel->getDetailMahasiswa($id);
+    
+    $data = [
+    "title" => "Detail Mahasiswa",
+      "mahasiswa" => $mahasiswa
+    ];
+
+    return view('templates/header', $data) .view('Home/detail', $data) . view('templates/footer', $data);
     }
 
     
@@ -35,10 +46,43 @@ class Home extends BaseController {
             "mahasiswa" => $mahasiswa,
         ];
 
-        //echo view('templates/header', $data);
-        //echo view('home', $data);
-        //echo view('templates/footer');
-        return view('templates/header', $data) .view('home', $data) . view('templates/footer', $data). view('form', $data);
+        return view('templates/header', $data) .view('home', $data) . view('templates/footer', $data);
     }
     
+    public function updateMahasiswa($id)
+    {
+        $mahasiswa = $this->mahasiswaModel->getDetailMahasiswa($id);
+
+        $data = [
+            "title" => "Update Mahasiswa",
+            "mahasiswa" => $mahasiswa,
+        ];
+
+        return view("home/update", $data);
+    }
+
+    public function updateMahasiswaAction($id)
+  {
+
+    $nama = $this->request->getVar("nama");
+    $npm = $this->request->getVar("npm");
+    $prodi = $this->request->getVar("prodi");
+
+    $data = [
+      "nama" => $nama,
+      "npm" => $npm,
+      "prodi" => $prodi,
+    ];
+
+    $this->mahasiswaModel->updateMahasiswa($id, $data);
+    $this->session->setFlashData("success", "Mahasiswa has been updated");
+
+    return redirect()->to(base_url("/"));
+  }
+
+  public function deleteMahasiswa($id){
+    $this->mahasiswaModel->delete($id);
+    $this->session->setFlashData("success", "Mahasiswa has been deleted");
+    return redirect()->to(base_url("/"));
+  }
 }
