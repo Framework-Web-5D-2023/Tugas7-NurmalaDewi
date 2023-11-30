@@ -1,2 +1,3 @@
 <h1><?= $title ?></h1>
-<p>Nama saya Nurmala dewi.</p>
+<p>Saya adalah mahasiswa Informatika yang tidak bisa ngoding. Mohon maaf atas keterbatasan yang saya punya, 
+    terimakasih atas perhatiannya.</p>

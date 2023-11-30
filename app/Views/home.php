@@ -16,7 +16,7 @@
     <h1><?= $title ?></h1>
     <p>Hello, <?= $nama ?></p>
     <table class="table caption-top">
-    <caption>Data</caption>
+    <caption>Data Mahasiswa Harvard University</caption>
     <thead>
       <tr>
         <th scope="col">No</th>

@@ -1,5 +1,8 @@
 <?php
 namespace App\Controllers;
+
+use Faker\Factory;
+
 class Home extends BaseController {
 
     public function __construct()
@@ -28,8 +31,8 @@ class Home extends BaseController {
       return redirect()->to(base_url("/"));
       }
         // ambil gambar
-    $fileImage = $this->request->getFile('image');
-    if ($fileImage->getError() == 4) 
+      $fileImage = $this->request->getFile('image');
+      if ($fileImage->getError() == 4) 
     {
       $namaImage = 'default.jpg';
     } else {
@@ -38,11 +41,12 @@ class Home extends BaseController {
       // pindahkan gambar Image ke file kita dan pada folder public/img 
       $fileImage->move('image', $namaImage);
       }
-    $nama = $this->request->getVar("nama");
-    $npm = $this->request->getVar("npm");
-    $prodi = $this->request->getVar("prodi");
+      
+      $nama = $this->request->getVar("nama");
+      $npm = $this->request->getVar("npm");
+      $prodi = $this->request->getVar("prodi");
 
-    $data =[
+      $data =[
       "nama" => $nama,
       "npm" => $npm,
       "prodi" => $prodi,
@@ -50,12 +54,13 @@ class Home extends BaseController {
     ];
 
         $this->mahasiswaModel->createMahasiswa($data);
-        $this->session->setFlashData("success", "mahasiswa has been added");
+        $this->session->setFlashData("Sukses,", "Data Mahasiswa sudah di Tambahkan");
         $this->session=\Config\Services::session();
         return redirect()->to(base_url("/"));
     }
 
-    public function detailMahasiswa($id){
+    public function detailMahasiswa($id)
+    {
     $mahasiswa = $this->mahasiswaModel->getDetailMahasiswa($id);
     
     $data = [
@@ -64,9 +69,8 @@ class Home extends BaseController {
     ];
 
     return view('Home/detail', $data) . view('templates/footer', $data);
-    }
+  }
 
-    
     public function index() : string
     {
       $mahasiswa = $this->mahasiswaModel->getAllMahasiswa();  
@@ -141,14 +145,14 @@ class Home extends BaseController {
     ];
 
     $this->mahasiswaModel->updateMahasiswa($id, $data);
-    $this->session->setFlashData("success", "Data Mahasiswa sudah di Update");
+    $this->session->setFlashData("Sukses,", "Data Mahasiswa sudah di Update");
 
     return redirect()->to(base_url("/"));
   }
 
   public function deleteMahasiswa($id){
     $this->mahasiswaModel->delete($id);
-    $this->session->setFlashData("success", "Data Mahasiswa sudah di Hapus");
+    $this->session->setFlashData("Sukses,", "Data Mahasiswa sudah di Hapus");
     return redirect()->to(base_url("/"));
   }
 }
